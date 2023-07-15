@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductCard from "../ProductCard";
 import './ProductList.css';
 
@@ -35,17 +35,18 @@ const getProductsApi = (callback) => {
     }, 1000);
 };
 
-let isLoading = true;
 
 const ProductList = () => {
-    let retrievedProducts = [];
     const [products, setProducts] = useState([]);
-    var allProducts = getProductsApi(function(res) {
-        setProducts(res);
-        isLoading = false;
-    });
+    const [isLoading, setIsLoading] = useState(true);
 
-    
+    useEffect(()=> {
+        getProductsApi(function(res) {
+            setProducts(res);
+            setIsLoading(false);
+        });
+    },[]);
+
 
     const productList = products.map((product) => {
         return (
