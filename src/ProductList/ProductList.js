@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ProductCard from "../ProductCard";
 import './ProductList.css';
 
@@ -28,19 +29,39 @@ const products = [
     }
 ];
 
+const getProductsApi = (callback) => {
+    setTimeout(function() {
+        callback(products);
+    }, 1000);
+};
+
+let isLoading = true;
+
 const ProductList = () => {
+    let retrievedProducts = [];
+    const [products, setProducts] = useState([]);
+    var allProducts = getProductsApi(function(res) {
+        setProducts(res);
+        isLoading = false;
+    });
+
+    
+
     const productList = products.map((product) => {
         return (
             <ProductCard key = {product.title} title = {product.title} price = {product.price}/>
         );
     });
 
-
-    return (
-        <div className = "Products">
-            {productList}
-        </div>
-    );
+    if(isLoading)
+        return <p>Loading...</p>;
+    else {
+        return (
+            <div className = "Products">
+                {productList}
+            </div>
+        );
+    }
 };
 
 export default ProductList;
