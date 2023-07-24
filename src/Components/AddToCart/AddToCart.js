@@ -1,14 +1,19 @@
+import { useContext } from "react";
+import CartContext  from "../../Context/CartContext";
+
 const AddToCart = (props) => {
+    const {cart, increaseQuantity, decreaseQuantity} = useContext(CartContext);
+
     const addQuantityHandler = () => {
-        props.increaseQuantity(props.product);
+        increaseQuantity(props.product);
     };
 
     const removeQuantityHandler = () => {
-        props.decreaseQuantity(props.product);
+        decreaseQuantity(props.product);
     };
 
     console.log(props.cart);
-    let quantity = props.cart[props.product.id] ? props.cart[props.product.id].quantity: 0;
+    let quantity = cart[props.product.id] ? cart[props.product.id].quantity: 0;
     if(quantity > 0) {
         return (
             <div>

@@ -69,10 +69,7 @@ const ProductList = (props) => {
     const productList = products.map((product) => {
         return (
             <ProductCard key = {product.id} 
-            product = {product}
-            cart = {props.cart}
-            increaseQuantity = {props.increaseQuantity}
-            decreaseQuantity = {props.decreaseQuantity}/>
+            product = {product}/>
         );
     });
 

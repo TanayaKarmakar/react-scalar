@@ -9,10 +9,8 @@ const ProductCard = (props) => {
             <h1>{props.product.title}</h1>
             <p>{price}</p>
             <Rating rating = {props.product.rating.value} maxRating = {5} size = {1}/>
-            <AddToCart cart = {props.cart} 
-            increaseQuantity = {props.increaseQuantity} 
-            product = {props.product}
-            decreaseQuantity = {props.decreaseQuantity}/>
+            <AddToCart 
+            product = {props.product}/>
         </div>
     );
 };
